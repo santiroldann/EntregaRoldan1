@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from django.http import HttpResponse
+from ProyectoJuegoApp.models import *
+
 
 def inicio(request):
     
