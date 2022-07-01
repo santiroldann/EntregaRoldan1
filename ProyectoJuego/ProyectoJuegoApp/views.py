@@ -10,11 +10,7 @@ def inicio(request):
     
 def crear_juego(request):
     
-    if request.mehtod == "GET":
-        
-        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
-    
-    elif request.method == "POST":
+    if request.method == "POST":
         
         info_formulario = request.POST
         
