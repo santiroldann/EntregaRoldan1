@@ -1,4 +1,5 @@
 from django.db import models
+from numpy import require
 
 # Create your models here.
 class Jugador(models.Model):
