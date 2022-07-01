@@ -10,6 +10,21 @@ def inicio(request):
     
 def crear_juego(request):
     
+    if request.mehtod == "GET":
+        
+        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
+    
+    elif request.method == "POST":
+        
+        info_formulario = request.POST
+        
+        juego = Juego(info_formulario["juego"], info_formulario["grupo"])
+        
+        juego.save()
+        
+    else:
+        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
+    
     return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
 
 def lideres(request):
