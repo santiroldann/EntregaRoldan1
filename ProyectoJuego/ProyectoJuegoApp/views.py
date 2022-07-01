@@ -6,7 +6,7 @@ from ProyectoJuegoApp.models import *
 
 def inicio(request):
     
-    return render(request,"/Users/eloso/PYTH/Entrega1Roldan/Entrega1Roldan1/ProyectoJuegoApp/templatess/ProyectoJuegoApp/index.html",{})
+    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/index1.html",{})
     
 def crear_juego(request):
     
@@ -16,22 +16,22 @@ def crear_juego(request):
     nuevo_juego = Juego(juego=juego, grupo=grupo)
     nuevo_juego.save()
     
-    return HttpResponse(f"Hemos agregado el juego de {juego} con comisión {grupo}")
+    return HttpResponse(f"Hemos agregado el juego de {juego} con grupo {grupo}")
 
 def lideres(request):
     
-    return render(request, "/Users/eloso/PYTH/Entrega1Roldan/Entrega1Roldan1/ProyectoJuegoApp/templatess/ProyectoJuegoApp/lideres.html",{})
+    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/lideres1.html",{})
 
 def jugadores(request):
     
-    return render(request, "/Users/eloso/PYTH/Entrega1Roldan/Entrega1Roldan1/ProyectoJuegoApp/templatess/ProyectoJuegoApp/jugadores.html",{})
+    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/jugadores1.html",{})
 
 def juegos(request):
     
     juegos = Juego.objects.all()
    
-    return render(request,"/Users/eloso/PYTH/Entrega1Roldan/Entrega1Roldan1/ProyectoJuegoApp/templatess/ProyectoJuegoApp/juegos.html",{"juegos":juegos})
+    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/juegos1.html",{"juegos":juegos})
  
 def base(request):
     
-    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/base.html",{})
+    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/base1.html",{})
