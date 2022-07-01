@@ -10,13 +10,7 @@ def inicio(request):
     
 def crear_juego(request):
     
-    juego = "Modern Warfare"
-    grupo = "7709"
-    
-    nuevo_juego = Juego(juego=juego, grupo=grupo)
-    nuevo_juego.save()
-    
-    return HttpResponse(f"Hemos agregado el juego de {juego} con grupo {grupo}")
+    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
 
 def lideres(request):
     

@@ -21,6 +21,7 @@ from ProyectoJuegoApp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("crearjuego/", crear_juego),
+    path("", inicio),
     
     #URLS de ProyectoJuegoApp
     path("juegoapp/", include("ProyectoJuegoApp.urls"))

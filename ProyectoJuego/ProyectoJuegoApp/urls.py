@@ -12,6 +12,7 @@ urlpatterns = [
     path("lideres/", lideres, name = "lideres"),
     path("jugadores/", jugadores, name= "jugadores"),
     path("juegos/", juegos, name= "juegos"),
+    path("crear_juego/", crear_juego, name= "crear_juego"),
     path("base/",base),
 
 ]
