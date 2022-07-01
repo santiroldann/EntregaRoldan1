@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from django.http import HttpResponse
 from ProyectoJuegoApp.models import *
@@ -14,14 +14,17 @@ def crear_juego(request):
         
         info_formulario = request.POST
         
-        juego = Juego(info_formulario["juego"], info_formulario["grupo"])
+        juego = Juego(juego = info_formulario["juego"], grupo =int(info_formulario["grupo"]))
         
         juego.save()
+        
+        
+        return redirect("inicio") 
         
     else:
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
     
-    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
+    
 
 def lideres(request):
     
