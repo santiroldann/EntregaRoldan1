@@ -10,8 +10,10 @@ Crear Juego - Juego App
 <form action="" method="post">
     {% csrf_token %}
 
-    <p>Juego <input type= "text" name="juego" id="" maxlength="30"></p>
-    <p>Grupo <input type= "number" name="grupo" id="" min="0"></p>
+    <!-- <p>Juego <input type= "text" name="juego" id="" maxlength="30"></p>
+    <p>Grupo <input type= "number" name="grupo" id="" min="0"></p> -->
+    
+    {{ form.as_p }}
 
     <input type="submit" value="Crear Juego">
 </form>

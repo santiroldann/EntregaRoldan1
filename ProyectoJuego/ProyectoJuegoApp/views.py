@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 
 from django.http import HttpResponse
 from ProyectoJuegoApp.models import *
+from .forms import *
 
 
 def inicio(request):
@@ -22,7 +23,8 @@ def crear_juego(request):
         return redirect("inicio") 
         
     else:
-        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{})
+        formulariovacio = NuevoJuego()
+        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{"form":formulariovacio})
     
     
 
