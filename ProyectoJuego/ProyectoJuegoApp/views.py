@@ -37,9 +37,19 @@ def crear_juego(request):
    
 def buscar_grupo(request):
     
-    grupos = []#Juego.objects.all()
+    if request.method == "POST":
+        
+        grupo = request.POST["grupo"]
+        
+        grupos = Juego.objects.filter(grupo__icontains=grupo)
+        
+        return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
     
-    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
+    else:
+    
+     grupos = []#Juego.objects.all()
+    
+     return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
       
 def crear_jugador(request):
     

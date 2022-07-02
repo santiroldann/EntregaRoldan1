@@ -16,4 +16,11 @@ Buscar Juego - Juego App
     </form> 
 </p>
 
+<p>Resultados: </p>
+<ul>
+    {% for resultado in grupos %}
+    <li>{{resultado.juego}} [{{resultado.grupo}}]</li>
+    {% endfor %}
+</ul>
+
  {% endblock %}
