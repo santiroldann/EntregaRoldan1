@@ -13,17 +13,26 @@ def crear_juego(request):
     
     if request.method == "POST":
         
-        info_formulario = request.POST
+        formulario = NuevoJuego(request.POST)
         
-        juego = Juego(juego = info_formulario["juego"], grupo =int(info_formulario["grupo"]))
+        if formulario.is_valid():
+            
+            info_juego = formulario.cleaned_data
         
-        juego.save()
+            juego = Juego(juego = info_juego["juego"], grupo =int(info_juego["grupo"]))
+        
+            juego.save()
         
         
-        return redirect("inicio") 
+            return redirect("inicio") 
+    
+        else: 
+          return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{"form":formulariovacio})
         
-    else:
+    else: 
+        
         formulariovacio = NuevoJuego()
+        
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_curso.html",{"form":formulariovacio})
     
     

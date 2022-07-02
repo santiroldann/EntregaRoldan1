@@ -1,5 +1,6 @@
+import tabnanny
 from django import forms
-
+from tabnanny import verbose
 
 class NuevoJuego(forms.Form):
     
