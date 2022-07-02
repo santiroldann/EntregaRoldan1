@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from ProyectoJuegoApp.models import *
 from .forms import *
+from django.db.models import Q
 
 
 def inicio(request):
@@ -41,7 +42,7 @@ def buscar_grupo(request):
         
         grupo = request.POST["grupo"]
         
-        grupos = Juego.objects.filter(grupo__icontains=grupo)
+        grupos = Juego.objects.filter(Q(juego__icontains=grupo) | Q(grupo__icontains=grupo)).values()
         
         return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
     
