@@ -34,6 +34,12 @@ def crear_juego(request):
         formulariovacio = NuevoJuego()
         
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_juego.html",{"form":formulariovacio})
+   
+def buscar_grupo(request):
+    
+    grupos = []#Juego.objects.all()
+    
+    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
       
 def crear_jugador(request):
     
