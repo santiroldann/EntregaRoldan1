@@ -77,6 +77,22 @@ def crear_jugador(request):
         formulariovacio = NuevoJugador()
         
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_jugador.html",{"form":formulariovacio})
+
+def buscar_jugador(request):
+    
+    if request.method == "POST":
+        
+        jugador = request.POST["jugador"]
+        
+        jugadores = Juego.objects.filter(jugador__icontains=jugador)
+        
+        return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_jugador.html",{"jugadores":jugadores})
+    
+    else:
+    
+     jugadores = []#Juego.objects.all()
+    
+     return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_jugador.html",{"jugadores":jugadores})
     
 def crear_lider(request):
     
