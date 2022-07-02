@@ -16,12 +16,14 @@ Lideres - Juego App
                     {% for lider in lideres %}
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           {{lider.avatar}} 
+                          [{{lider.grupo}}]
                           <span class="badge bg-dark rounded-pill">{{lider.juego}}</span>
             
                         </li>
                     {% endfor %}
 
                 </ul>
+                <a href="{% url 'crear_lider' %}">+ Crear Nuevo Lider</a>
             </div>
         </div>
     </div>

@@ -34,8 +34,7 @@ def crear_juego(request):
         formulariovacio = NuevoJuego()
         
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_juego.html",{"form":formulariovacio})
-    
-    
+      
 def crear_jugador(request):
     
     if request.method == "POST":
@@ -46,7 +45,7 @@ def crear_jugador(request):
             
             info_jugador = formulario.cleaned_data
         
-            jugador = Jugador(jugador = info_jugador["jugador"], correo = info_jugador["correo"], juego = info_jugador["juego"])
+            jugador = Jugador(avatar = info_jugador["avatar"], correo = info_jugador["correo"], juego = info_jugador["juego"])
         
             jugador.save()
         
@@ -61,6 +60,32 @@ def crear_jugador(request):
         formulariovacio = NuevoJugador()
         
         return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_jugador.html",{"form":formulariovacio})
+    
+def crear_lider(request):
+    
+    if request.method == "POST":
+        
+        formulario = NuevoLider(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_lider = formulario.cleaned_data
+        
+            lider = Lider(avatar = info_lider["avatar"], correo = info_lider["correo"], juego = info_lider["juego"], grupo =int(info_lider["grupo"]))
+        
+            lider.save()
+        
+        
+            return redirect("inicio") 
+    
+        else: 
+          return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_lider.html",{"form":formulariovacio})
+        
+    else: 
+        
+        formulariovacio = NuevoLider()
+        
+        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_lider.html",{"form":formulariovacio})   
 
 def lideres(request):
     

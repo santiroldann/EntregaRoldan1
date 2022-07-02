@@ -12,3 +12,10 @@ class NuevoJugador(forms.Form):
     avatar = forms.CharField(max_length=30)
     correo = forms.EmailField()
     juego = forms.CharField(max_length=30)
+    
+class NuevoLider(forms.Form):
+    
+    avatar = forms.CharField(max_length=30)
+    correo = forms.EmailField()
+    juego = forms.CharField(max_length=30)
+    grupo = forms.IntegerField()

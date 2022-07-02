@@ -14,6 +14,7 @@ urlpatterns = [
     path("juegos/", juegos, name= "juegos"),
     path("crear_juego/", crear_juego, name= "crear_juego"),
     path("crear_jugador/", crear_jugador, name= "crear_jugador"),
+    path("crear_lider/", crear_lider, name= "crear_lider"),
     path("base/",base),
 
 ]
