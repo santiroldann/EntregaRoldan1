@@ -84,7 +84,7 @@ def buscar_jugador(request):
         
         jugador = request.POST["jugador"]
         
-        jugadores = Juego.objects.filter(jugador__icontains=jugador)
+        jugadores = Jugador.objects.filter(jugador__icontains=jugador)
         
         return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_jugador.html",{"jugadores":jugadores})
     
