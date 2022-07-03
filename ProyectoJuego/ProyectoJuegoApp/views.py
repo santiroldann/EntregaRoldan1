@@ -8,7 +8,7 @@ from django.db.models import Q
 
 def inicio(request):
     
-    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/index1.html",{})
+    return render(request,"index1.html",{})
     
 def crear_juego(request):
     
@@ -28,30 +28,14 @@ def crear_juego(request):
             return redirect("inicio") 
     
         else: 
-          return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_juego.html",{"form":formulariovacio})
+          return render(request, "formulario_juego.html",{"form":formulariovacio})
         
     else: 
         
         formulariovacio = NuevoJuego()
         
-        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_juego.html",{"form":formulariovacio})
-   
-def buscar_grupo(request):
-    
-    if request.method == "POST":
-        
-        grupo = request.POST["grupo"]
-        
-        grupos = Juego.objects.filter(Q(juego__icontains=grupo) | Q(grupo__icontains=grupo)).values()
-        
-        return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
-    
-    else:
-    
-     grupos = []#Juego.objects.all()
-    
-     return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_grupo.html",{"grupos":grupos})
-      
+        return render(request, "formulario_juego.html",{"form":formulariovacio})
+         
 def crear_jugador(request):
     
     if request.method == "POST":
@@ -76,24 +60,8 @@ def crear_jugador(request):
         
         formulariovacio = NuevoJugador()
         
-        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_jugador.html",{"form":formulariovacio})
+        return render(request, "formulario_jugador.html",{"form":formulariovacio})
 
-def buscar_jugador(request):
-    
-    if request.method == "POST":
-        
-        jugador = request.POST["jugador"]
-        
-        jugadores = Jugador.objects.filter(jugador__icontains=jugador)
-        
-        return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_jugador.html",{"jugadores":jugadores})
-    
-    else:
-    
-     jugadores = []#Juego.objects.all()
-    
-     return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/busqueda_jugador.html",{"jugadores":jugadores})
-    
 def crear_lider(request):
     
     if request.method == "POST":
@@ -112,32 +80,66 @@ def crear_lider(request):
             return redirect("inicio") 
     
         else: 
-          return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_lider.html",{"form":formulariovacio})
+          return render(request, "formulario_lider.html",{"form":formulariovacio})
         
     else: 
         
         formulariovacio = NuevoLider()
         
-        return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_lider.html",{"form":formulariovacio})   
+        return render(request, "formulario_lider.html",{"form":formulariovacio})   
 
 def lideres(request):
     
+    if request.method == "POST":
+        
+        search = request.POST["search"]
+        
+        if search != "":
+            
+            lideres = Lider.objects.filter(Q(avatar__icontains=search) | Q(juego__icontains=search) | Q(grupo__icontains=search)).values()
+    
+            return render(request, "lideres1.html",{"lideres":lideres, "search":True, "busqueda":search})
+
     lideres = Lider.objects.all()
     
-    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/lideres1.html",{"lideres":lideres})
+    return render(request,"lideres1.html",{"lideres":lideres})
+    
 
 def jugadores(request):
     
+    if request.method == "POST":
+        
+        search = request.POST["search"]
+        
+        if search != "":
+            
+            jugadores = Jugador.objects.filter(avatar__icontains=search)
+    
+            return render(request, "jugadores1.html",{"jugadores":jugadores, "search":True, "busqueda":search})
+
     jugadores = Jugador.objects.all()
     
-    return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/jugadores1.html",{"jugadores":jugadores})
+    return render(request,"jugadores1.html",{"jugadores":jugadores})
+
 
 def juegos(request):
     
+    if request.method == "POST":
+        
+        search = request.POST["search"]
+        
+        if search != "":
+        
+         juegos = Juego.objects.filter(Q(juego__icontains=search) | Q(grupo__icontains=search)).values()
+        
+         return render(request,"juegos1.html",{"juegos":juegos, "search":True, "busqueda":search})
+    
+    
     juegos = Juego.objects.all()
-   
-    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/juegos1.html",{"juegos":juegos})
+    
+    return render(request,"juegos1.html",{"juegos":juegos})
+    
  
 def base(request):
     
-    return render(request,"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/base1.html",{})
+    return render(request,"base1.html",{})

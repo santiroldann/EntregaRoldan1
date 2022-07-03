@@ -58,7 +58,7 @@ ROOT_URLCONF = 'ProyectoJuego.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r"/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp"],
+        'DIRS': [BASE_DIR /"ProyectoJuegoApp"/"template"/"ProyectoJuegoApp"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
