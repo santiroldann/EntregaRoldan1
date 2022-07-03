@@ -5,24 +5,14 @@
 * Este repositorio fue creado con la intención de hacer un foro, con jugadores de la saga Call of duty, 
 en la cual se pueda organizar los participantes con lideres, jugadores y juegos, para compartir información y ayudar a todos los jugadores a crecer.
 * Version 1.0
-* 
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Como iniciar? ###
 
-### Contribution guidelines ###
+* Para iniciar el repositorio, en la terminal escribir python3 manage.py runserver, luego abrir el servidor que aparece en la terminal y te redirige a la página.
+* El repositorio se compone de un Proyecto y su APP correspondiente, alli se encuentra toda la estructura con sus templates en html y sus elementos en archivos de PYTHON, tambien complementado por elementos de static
 
-* Writing tests
-* Code review
-* Other guidelines
 
-### Who do I talk to? ###
+### Con quien puedo hablar? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Santiago Roldan Arias
