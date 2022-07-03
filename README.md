@@ -6,6 +6,13 @@
 en la cual se pueda organizar los participantes con lideres, jugadores y juegos, para compartir información y ayudar a todos los jugadores a crecer.
 * Version 1.0
 
+### Que se puede hacer?###
+
+* JUGADORES:
+Los jugadores podran iniciar sesión, unirse a grupos relacionados con sus juegos favoritos y participar de estos foros liderados por lideres.
+
+*LIDERES:
+Los lideres podran crear grupos privados, relacionados con sus juegos para crear una comunidad relacionada a sus intereses.
 
 ### Como iniciar? ###
 
