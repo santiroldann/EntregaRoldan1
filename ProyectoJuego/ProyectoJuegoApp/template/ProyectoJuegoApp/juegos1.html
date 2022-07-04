@@ -50,7 +50,14 @@ Juegos - Juego App
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{juego.juego}}</td>
                                 <td>{{juego.grupo}}</td>
-                                
+                                <td>
+                                    <a href="{% url 'editar_juego' juego.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'eliminar_juego' juego.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    {% comment %}
+                                        {% url 'editar_juego' juego.id %}
+                                        {% url 'eliminar_juego' juego.id %}
+                                    {% endcomment %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

@@ -25,7 +25,7 @@ def crear_juego(request):
             juego.save()
         
         
-            return redirect("inicio") 
+            return redirect("juegos") 
     
         else: 
           return render(request, "formulario_juego.html",{"form":formulariovacio})
@@ -35,6 +35,36 @@ def crear_juego(request):
         formulariovacio = NuevoJuego()
         
         return render(request, "formulario_juego.html",{"form":formulariovacio})
+    
+def eliminar_juego(request,juego_id):
+    
+    juego = Juego.objects.get(id=juego_id)
+    juego.delete()
+    
+    return redirect("juegos")
+
+def editar_juego(request,juego_id):
+    
+    juego = Juego.objects.get(id=juego_id)
+    
+    if request.method == "POST":
+        
+        formulario = NuevoJuego(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_juego = formulario.cleaned_data
+            
+            juego.juego = info_juego["juego"]
+            juego.grupo = info_juego["grupo"]
+            juego.save()
+            
+            return redirect("juegos")
+            
+            
+    formulario = NuevoJuego(initial={"juego":juego.juego, "grupo":juego.grupo})
+      
+    return render(request,"formulario_juego.html",{"form":formulario})
          
 def crear_jugador(request):
     
@@ -51,16 +81,24 @@ def crear_jugador(request):
             jugador.save()
         
         
-            return redirect("inicio") 
+            return redirect("jugadores") 
     
         else: 
-          return render(request, "/Users/eloso/PYTH/EntregaRoldan1/ProyectoJuego/ProyectoJuegoApp/template/ProyectoJuegoApp/formulario_jugador.html",{"form":formulariovacio})
+          return render(request, "formulario_jugador.html",{"form":formulariovacio})
         
     else: 
         
         formulariovacio = NuevoJugador()
+    
         
         return render(request, "formulario_jugador.html",{"form":formulariovacio})
+    
+def eliminar_jugador(request,jugador_id):
+    
+    jugador = Jugador.objects.get(id=jugador_id)
+    jugador.delete()
+    
+    return redirect("jugadores")
 
 def crear_lider(request):
     
@@ -77,7 +115,7 @@ def crear_lider(request):
             lider.save()
         
         
-            return redirect("inicio") 
+            return redirect("lideres") 
     
         else: 
           return render(request, "formulario_lider.html",{"form":formulariovacio})
@@ -104,7 +142,6 @@ def lideres(request):
     
     return render(request,"lideres1.html",{"lideres":lideres})
     
-
 def jugadores(request):
     
     if request.method == "POST":
@@ -120,7 +157,6 @@ def jugadores(request):
     jugadores = Jugador.objects.all()
     
     return render(request,"jugadores1.html",{"jugadores":jugadores})
-
 
 def juegos(request):
     
@@ -138,8 +174,7 @@ def juegos(request):
     juegos = Juego.objects.all()
     
     return render(request,"juegos1.html",{"juegos":juegos})
-    
- 
+     
 def base(request):
     
     return render(request,"base1.html",{})
