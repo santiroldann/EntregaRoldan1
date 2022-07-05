@@ -164,7 +164,7 @@ class JugadorList(ListView):
 class JugadorDetail(DetailView):
      
      model = Jugador
-     template_name = "ProyecoJuegoApp/jugador_detail"  
+     template_name = "ProyecoJuegoApp/jugador_detail.html"  
         
 class JugadorCreate(CreateView):
      
