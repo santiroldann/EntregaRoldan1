@@ -5,6 +5,11 @@ from ProyectoJuegoApp.models import *
 from .forms import *
 from django.db.models import Q
 
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView, CreateView, UpdateView
+from django.urls import reverse_lazy  
+
 
 def inicio(request):
     
@@ -126,6 +131,58 @@ def crear_lider(request):
         
         return render(request, "formulario_lider.html",{"form":formulariovacio})   
 
+def editar_jugador(request, jugador_id):
+    
+    jugador = Juego.objects.get(id=jugador_id)
+    
+    if request.method == "POST":
+        
+        formulario = NuevoJugador(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_jugador = formulario.cleaned_data
+            
+            jugador.avatar = info_jugador["avatar"]
+            jugador.correo = info_jugador["correo"]
+            jugador.juego = info_jugador["juego"]
+            jugador.save()
+            
+            return redirect("juegos")
+            
+            
+    formulario = NuevoJugador(initial={"avatar":jugador.avatar, "correo":jugador.correo, "juego":jugador.juego})
+      
+    return render(request,"formulario_jugador.html",{"form":formulario})
+    
+
+class JugadorList(ListView):
+        
+      model = Jugador
+      template_name = "ProyectoJuegoApp/jugador_list.html"
+   
+class JugadorDetail(DetailView):
+     
+     model = Jugador
+     template_name = "ProyecoJuegoApp/jugador_detail"  
+        
+class JugadorCreate(CreateView):
+     
+     model = Jugador
+     success_url = "/juegoapp/jugador/list"
+     fields = ["avatar", "correo", "juego"]
+     
+class JugadorUpdate(UpdateView):
+   
+     model = Jugador
+     success_url = "/juegoapp/jugador/list"
+     fields = ["avatar", "correo", "juego"]
+     
+class JugadorDelete(DeleteView):
+     
+     model = Jugador
+     success_url = "/juegoapp/jugador/list"
+      
 def lideres(request):
     
     if request.method == "POST":

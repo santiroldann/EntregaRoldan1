@@ -13,6 +13,13 @@ urlpatterns = [
     path("jugadores/", jugadores, name= "jugadores"),
     path("juegos/", juegos, name= "juegos"),
     
+    path("jugador/list", JugadorList.as_view(), name="jugador_list"),
+    path(r"^(?P<pk>\d+)$", JugadorDetail.as_view(), name="jugador_detail"),
+    path(r"^nuevo$", JugadorCreate.as_view(), name="jugador_create"),
+    path(r"^editar/(?P<pk>\d+)$", JugadorUpdate.as_view(), name="jugador_update"),
+    path(r"^eliminar/(?P<pk>\d+)$", JugadorDelete.as_view(), name="jugador_delete"),
+    
+    
     path("crear_juego/", crear_juego, name= "crear_juego"),
     path("crear_jugador/", crear_jugador, name= "crear_jugador"),
     path("crear_lider/", crear_lider, name= "crear_lider"),
