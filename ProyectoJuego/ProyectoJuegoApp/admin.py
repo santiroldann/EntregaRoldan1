@@ -21,3 +21,5 @@ class LiderAdmin(admin.ModelAdmin):
 admin.site.register(Juego, JuegoAdmin)
 admin.site.register(Jugador, JugadorAdmin)
 admin.site.register(Lider, LiderAdmin)
+admin.site.register(ImgPerfil)
+admin.site.register(Post)

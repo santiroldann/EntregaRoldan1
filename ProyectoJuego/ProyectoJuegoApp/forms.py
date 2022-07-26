@@ -1,6 +1,12 @@
 
 from django import forms
 from tabnanny import verbose
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+
+from ProyectoJuegoApp.models import ImgPerfil, Post
+
 
 class NuevoJuego(forms.Form):
     
@@ -19,3 +25,52 @@ class NuevoLider(forms.Form):
     correo = forms.EmailField()
     juego = forms.CharField(max_length=30)
     grupo = forms.IntegerField()
+    
+class UserRegisterForm(UserCreationForm):
+    
+    roles = [("jugador", "Jugador"),("lider", "Lider")]
+    email = forms.EmailField()
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password1 = forms.CharField(label="Confirmar Contraseña", widget=forms.PasswordInput)
+    
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+    
+    roles = forms.MultipleChoiceField(choices=roles, label="Roles", widget=forms.Select(choices=roles))
+    
+    class Meta:
+        model = User
+        fields = ["username", "email", "password1", "password2", "first_name", "last_name"]
+        
+        help_texts = {k: "" for k in fields }
+        
+class UserEditForm(UserCreationForm):
+    
+    email = forms.EmailField(label="Email")
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput, required=False)
+    password1 = forms.CharField(label="Confirmar Contraseña", widget=forms.PasswordInput, required=False)
+    
+    first_name = forms.CharField(label="Nombre", required=False)
+    last_name = forms.CharField(label="Apellido", required=False)
+    
+    class Meta:
+        model = User
+        fields = ["email", "password1", "password2", "first_name", "last_name"]
+        
+        help_texts = {k: "" for k in fields }
+        
+class ImgPerfilForm(forms.Form):
+    
+    imagen = forms.ImageField(label="imagen")
+    
+    class Meta:
+        model = ImgPerfil
+        fields = 'imagen'
+        
+
+class CreateMensajeForm(forms.Form):
+    
+    destinatario = forms.EmailField(label='Email', required=True, widget=forms.Select(choices=[('', 'Seleccione un destinatario')] + [(user.email, user.email) for user in User.objects.all()]))
+    # email = forms.EmailField(label='Email', required=True)
+    mensaje = forms.CharField(label='Mensaje', required=True, widget=forms.Textarea)     
+##
